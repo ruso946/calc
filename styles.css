@@ -1,0 +1,11 @@
+.cajaPrincipal{
+    display: inline;
+    align-items: center;
+}
+
+#visor{
+    width: 180px;
+}
+div button {
+    width: 30px;
+}
