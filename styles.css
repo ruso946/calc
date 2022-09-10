@@ -1,11 +1,15 @@
 .cajaPrincipal{
-    display: inline;
-    align-items: center;
+    border: 1px solid;
+    
 }
 
-#visor{
-    width: 180px;
+/*#contieneCalc{
+    margin:auto;
+    align-items: center;
 }
+#visor{
+    width: 210px;
+}*/
 div button {
-    width: 30px;
+    width: 15%;
 }
