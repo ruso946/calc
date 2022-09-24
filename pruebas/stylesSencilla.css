@@ -8,21 +8,25 @@
     padding: 0%;
 }
 
-#igual{
+.igual1{
     width: 100%;
     height: 200%;
-    margin: 0%;
+    margin: 5%;
+    padding: 0%;
+}
+
+.igual{
+    width: 100%;
+    height: 180%;
+    margin-top: 0%;
+    margin-left : 5%;
     padding: 0%;
 }
 
 .boton{
     width: 100%;
-    margin: 0%;
-    padding: 0%;
-}
-
-.boton20{
-    width: 20%;
-    margin: 0%;
+    margin-right : 5%;
+    margin-left : 5%;
+    margin-bottom: 5%;
     padding: 0%;
 }
