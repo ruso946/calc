@@ -2,37 +2,96 @@
 // 2 capturar los/el ingreso de operaciones -> variable
 // 3 ruta del DOM del resultado o visor
 // 4 eventos en los botones -> recolectar 1 y 2
-
-const display = document.getElementById("visor");
-let numero1 = document.querySelector("#n1").value;
-let numero2 = document.getElementById("n2").value;
-let numero3 = document.getElementById("n3").value;
-let numero4 = document.getElementById("n4").value;
-let numero5 = document.getElementById("n5").value;
-let numero6 = document.getElementById("n6").value;
-let numero7 = document.getElementById("n7").value;
-let numero8 = document.getElementById("n8").value;
-let numero9 = document.getElementById("n9").value;
-let suma = document.getElementById("suma").innerHTML;
-
-function operacion (op, n1, n2){
-    if (op=="+"){
-        return parseInt(n1) + parseInt( n2);
-    }
+function inicializa(resultado){
+    numerosString = [];
+    operandos = [];
+    numeros = [];
+    n1="";
+    display.innerHTML=resultado;
 }
 
-console.log(n1, n2, suma)
-console.log (operacion(suma, numero1, numero2));
+const display = document.querySelector(".visor"); // ruta del display o visor
+let numerosString = [];
+let operandos = [];
+let numeros = [];
+let n1="";
+let resultado="0";
 
-display.textContent = (operacion(suma,numero1,numero2));
 
-console.log (display);
+inicializa(resultado);
 
-let botonesMenu = document.querySelectorAll(".btn");
+let botonesCalc = document.querySelectorAll(".btn"); //nodo de botones de la calculadora
+botonesCalc.forEach(boton=>{boton.addEventListener("click",() => operaciones(boton.innerHTML))})
 
-console.log(botonesMenu)
+function convierteStringANumero(numerosString){
+    for (i of numerosString){
+        n1+=i;            
+        }
+    return (parseInt(n1));
+    }
 
-botonesMenu.forEach((btnn)=>{
-    btnn.addEventListener("click", )
-})
+function operaciones(boton){
+    if (!(isNaN(boton))){
+        numerosString.push(boton);
+        if (numerosString.length==1){
+            display.innerHTML = boton;
+        }
+        else display.innerHTML += boton;
+    }
+    
+    else if (boton==="AC"){
+        inicializa(resultado);
+    }
+    else if (boton==="+"){
+        display.innerHTML+="+";
+        operandos.push("+");
+        numeros.push(convierteStringANumero(numerosString));
+        n1="";
+        numerosString=[];
+    }
+    
+    else if (boton==="-"){
+        display.innerHTML+="-";
+        operandos.push("-");
+        numeros.push(convierteStringANumero(numerosString));
+        n1="";
+        numerosString=[];
+    }
 
+    else if (boton==="*"){
+        display.innerHTML+="*";
+        operandos.push("*");
+        numeros.push(convierteStringANumero(numerosString));
+        n1="";
+        numerosString=[];
+    }
+    else if (boton==="/"){
+        display.innerHTML+="/";
+        operandos.push("/");
+        numeros.push(convierteStringANumero(numerosString));
+        n1="";
+        numerosString=[];
+    }
+
+    else if (boton==="="){
+        numeros.push(convierteStringANumero(numerosString));
+        n1="";
+        numerosString=[];
+        if (operandos[0]=="+"){
+            resultado=numeros[0]+numeros[1];
+            }
+        else if (operandos[0]=="-"){
+            resultado=numeros[0]-numeros[1];
+            }
+        else if (operandos[0]=="*"){
+            resultado=numeros[0]*numeros[1];
+            }
+        else if (operandos[0]=="/"){
+            resultado=numeros[0]/numeros[1];
+            }
+        inicializa(resultado);
+        }
+    else alert("es una operacion todavia no definida")
+}
+  
+    
