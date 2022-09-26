@@ -11,11 +11,12 @@ function inicializa(resultado){
 }
 
 const display = document.querySelector(".visor"); // ruta del display o visor
-let numerosString = [];
+var numerosString = [];
 let operandos = [];
 let numeros = [];
 let n1="";
 let resultado="0";
+operador="";
 
 
 inicializa(resultado);
@@ -24,10 +25,13 @@ let botonesCalc = document.querySelectorAll(".btn"); //nodo de botones de la cal
 botonesCalc.forEach(boton=>{boton.addEventListener("click",() => operaciones(boton.innerHTML))})
 
 function convierteStringANumero(numerosString){
-    for (i of numerosString){
-        n1+=i;            
+    for (num of numerosString){
+        n1+=num;            
         }
-    return (parseInt(n1));
+        n2=n1;
+        n1="";
+        numerosString=[];
+    return (parseInt(n2));
     }
 
 function operaciones(boton){
@@ -40,16 +44,17 @@ function operaciones(boton){
     }
     
     else if (boton==="AC"){
+        resultado=0;
         inicializa(resultado);
     }
-    else if (boton==="+"){
+    else if (boton==="+"){//hacer una funcion que tome el signo de la operacion y devuelva 
         display.innerHTML+="+";
         operandos.push("+");
         numeros.push(convierteStringANumero(numerosString));
         n1="";
         numerosString=[];
     }
-    
+            
     else if (boton==="-"){
         display.innerHTML+="-";
         operandos.push("-");
@@ -92,6 +97,4 @@ function operaciones(boton){
         inicializa(resultado);
         }
     else alert("es una operacion todavia no definida")
-}
-  
-    
+    }
